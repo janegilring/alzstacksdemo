@@ -12,20 +12,7 @@ param (
   [String]$TemplateParameterFile = 'config\custom-parameters\resourceGroupConnectivity.parameters.all.json'
 )
 
-<#
-# Parameters necessary for deployment
-$inputObject = @{
-  DeploymentName        = 'alz-ConnectivityRGDeploy-{0}' -f ( -join (Get-Date -Format 'yyyyMMddTHHMMssffffZ')[0..63])
-  Location              = $Location
-  TemplateFile          = $TemplateFile
-  TemplateParameterFile = $TemplateParameterFile
-  Verbose               = $true
-}
 
-Select-AzSubscription -SubscriptionId $ConnectivitySubscriptionId
-
-New-AzSubscriptionDeployment @inputObject
-#>
 
 $inputObject = @{
   Name                     = 'ALZ-Connectivity}'
