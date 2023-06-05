@@ -5,13 +5,14 @@
     "parLocation": {
       "value": "northeurope"
     },
+    "parResourceGroupName": {
+      "value": "rg-alz-connectivity"
+    },
     "parCompanyPrefix": {
       "value": "alz"
     },
     "parHubNetworkName": {
-      "value": [
-        "alz-hub-northeurope"
-      ]
+      "value": "alz-hub-northeurope"
     },
     "parHubNetworkAddressPrefix": {
       "value": "10.20.0.0/16"
@@ -38,7 +39,7 @@
         },
         {
           "name": "AzureFirewallManagementSubnet",
-          "ipAddressRange": "10.10.253.0/24",
+          "ipAddressRange": "10.20.253.0/24",
           "networkSecurityGroupId": "",
           "routeTableId": ""
         }
@@ -57,7 +58,7 @@
       "value": "-PublicIP"
     },
     "parAzBastionEnabled": {
-      "value": true
+      "value": false
     },
     "parAzBastionName": {
       "value": "alz-bastion"
@@ -69,18 +70,16 @@
       "value": "nsg-AzureBastionSubnet"
     },
     "parDdosEnabled": {
-      "value": true
+      "value": false
     },
     "parDdosPlanName": {
       "value": "alz-ddos-plan"
     },
     "parAzFirewallEnabled": {
-      "value": true
+      "value": false
     },
     "parAzFirewallName": {
-      "value": [
-        "alz-azfw-northeurope"
-      ]
+      "value": "alz-azfw-northeurope"
     },
     "parAzFirewallPoliciesName": {
       "value": "alz-azfwpolicy-northeurope"
@@ -107,7 +106,7 @@
       "value": false
     },
     "parPrivateDnsZonesEnabled": {
-      "value": true
+      "value": false
     },
     "parPrivateDnsZones": {
       "value": [
@@ -224,7 +223,7 @@
       }
     },
     "parTelemetryOptOut": {
-      "value": false
+      "value": true
     },
     "parBastionOutboundSshRdpPorts": {
       "value": [
