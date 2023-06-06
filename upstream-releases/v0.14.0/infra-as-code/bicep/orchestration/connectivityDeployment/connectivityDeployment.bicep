@@ -260,7 +260,7 @@ param parTelemetryOptOut bool = false
 @sys.description('Define outbound destination ports or ranges for SSH or RDP that you want to access from Azure Bastion.')
 param parBastionOutboundSshRdpPorts array = [ '22', '3389' ]
 
-module modResourceGroup '../resourceGroup/resourceGroup.bicep' = {
+module modResourceGroup '../../modules/resourceGroup/resourceGroup.bicep' = {
   name: 'deploy-ResourceGroup'
   scope: subscription(subscription().subscriptionId)
   params: {
@@ -271,7 +271,7 @@ module modResourceGroup '../resourceGroup/resourceGroup.bicep' = {
   }
 }
 
-module modhubNetworking '../hubNetworking/hubNetworking.bicep' = {
+module modhubNetworking '../../modules/hubNetworking/hubNetworking.bicep' = {
   name: 'deploy-hubNetworking'
   scope: resourceGroup(parResourceGroupName)
   dependsOn: [modResourceGroup]

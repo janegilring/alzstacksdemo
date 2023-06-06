@@ -1,3 +1,5 @@
+targetScope = 'resourceGroup'
+
 metadata name = 'ALZ Bicep - Logging Module'
 metadata description = 'ALZ Bicep Module used to set up Logging'
 
@@ -5,7 +7,7 @@ metadata description = 'ALZ Bicep Module used to set up Logging'
 param parLogAnalyticsWorkspaceName string = 'alz-log-analytics'
 
 @sys.description('Log Analytics region name - Ensure the regions selected is a supported mapping as per: https://docs.microsoft.com/azure/automation/how-to/region-mappings.')
-param parLogAnalyticsWorkspaceLocation string = resourceGroup().location
+param parLogAnalyticsWorkspaceLocation string
 
 @allowed([
   'CapacityReservation'
@@ -56,7 +58,7 @@ param parLogAnalyticsWorkspaceSolutions array = [
 param parAutomationAccountName string = 'alz-automation-account'
 
 @sys.description('Automation Account region name. - Ensure the regions selected is a supported mapping as per: https://docs.microsoft.com/azure/automation/how-to/region-mappings.')
-param parAutomationAccountLocation string = resourceGroup().location
+param parAutomationAccountLocation string
 
 @sys.description('Automation Account - use managed identity.')
 param parAutomationAccountUseManagedIdentity bool = true
@@ -92,8 +94,7 @@ resource resAutomationAccount 'Microsoft.Automation/automationAccounts@2021-06-2
     }
   }
 }
-
-resource resLogAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
+resource resLogAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
   name: parLogAnalyticsWorkspaceName
   location: parLogAnalyticsWorkspaceLocation
   tags: parLogAnalyticsWorkspaceTags
