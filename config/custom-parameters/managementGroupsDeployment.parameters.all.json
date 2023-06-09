@@ -2,9 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "parManagementSubscriptionId": {
-      "value": "72949fb8-297a-4da5-bfed-aed671c680d0"
-    },
     "parTopLevelManagementGroupPrefix": {
       "value": "psc"
     },
@@ -34,14 +31,6 @@
     },
     "parTelemetryOptOut": {
       "value": true
-    },
-    "parLocation": {
-      "value": "northeurope"
-    },
-    "parTags": {
-      "value": {
-        "Environment": "demo"
-      }
     }
   }
 }

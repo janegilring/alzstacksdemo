@@ -38,13 +38,10 @@ param parPlatformMgChildren object = {}
 @sys.description('Set Parameter to true to Opt-out of deployment telemetry.')
 param parTelemetryOptOut bool = false
 
-@sys.description('Tags you would like to be applied to all resources in this module.')
-param parTags object = {}
-
-
 module modManagementGroups '../../modules/managementGroups/managementGroups.bicep' = {
   name: 'deploy-ManagementGroups'
   scope: tenant()
+  //scope: managementGroup('fd91810c-57b4-43e3-b513-c2a81e8d6a27') //'Tenant Root Group'
   params: {
     parLandingZoneMgAlzDefaultsEnable: parLandingZoneMgAlzDefaultsEnable
     parLandingZoneMgChildren: parLandingZoneMgChildren
