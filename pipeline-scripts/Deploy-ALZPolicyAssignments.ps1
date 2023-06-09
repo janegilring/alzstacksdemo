@@ -22,4 +22,6 @@ $inputObject = @{
   Verbose               = $true
 }
 
-New-AzManagementGroupDeployment @inputObject
+#New-AzManagementGroupDeployment @inputObject
+
+Write-Host "alzDefaultPolicyAssignments is disabled until Deployment Stacks supports deploying to Management Groups (definitions deployed to subscription to show-case policy deployments via Stacks"
