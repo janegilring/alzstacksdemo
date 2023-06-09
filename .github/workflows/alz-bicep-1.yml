@@ -42,7 +42,7 @@ jobs:
         with:
           inlineScript: |
               (Get-ChildItem Env:/PSModulePath | Select-Object -ExpandProperty Value) -split ":"
-              $modulePath = Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path)
+              $modulePath = Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path))
               $moduleFilePath = Join-Path (Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path)) -ChildPath StacksPS_9.1.10.zip
               Write-Host "Downloading module to path $modulePath"
               Invoke-WebRequest -Method Get -Uri "https://janegilring.blob.core.windows.net/demos/StacksPS_9.1.10.zip?sp=r&st=2023-06-09T19:17:04Z&se=2023-10-01T03:17:04Z&spr=https&sv=2022-11-02&sr=b&sig=da5nXndb4LYFsD5AVbPETIbsYw33RdBFpkw8bAFsTc4%3D" -OutFile $moduleFilePath
