@@ -178,3 +178,15 @@ module modCustomPolicyDefinitions'../../modules/policy/definitions/customPolicyD
     parTelemetryOptOut: parTelemetryOptOut
   }
 }
+
+//resource templateSpecsTest 'Microsoft.Resources/resourceGroups@2022-09-01' existing = {
+//  name: 'templateSpecsTest'
+//}
+
+module stgModule './modules/storageModule.bicep' = {
+  name: 'storageDeploy'
+  //scope: templateSpecsTest
+  params: {
+    location: location
+  }
+}

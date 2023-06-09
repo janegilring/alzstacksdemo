@@ -1,15 +1,18 @@
-targetScope = 'managementGroup'
+//targetScope = 'managementGroup'
+targetScope = 'subscription'
 
 metadata name = 'ALZ Bicep - Custom Policy Defitions at Management Group Scope'
 metadata description = 'This policy definition is used to deploy custom policy definitions at management group scope'
 
 @sys.description('The management group scope to which the policy definitions are to be created at.')
-param parTargetManagementGroupId string = 'alz'
+param parTargetManagementGroupId string
 
 @sys.description('Set Parameter to true to Opt-out of deployment telemetry')
 param parTelemetryOptOut bool = false
 
-var varTargetManagementGroupResourceId = tenantResourceId('Microsoft.Management/managementGroups', parTargetManagementGroupId)
+//var varTargetManagementGroupResourceId = tenantResourceId('Microsoft.Management/managementGroups', parTargetManagementGroupId)
+
+var varTargetManagementGroupResourceId = parTargetManagementGroupId
 
 // This variable contains a number of objects that load in the custom Azure Policy Defintions that are provided as part of the ESLZ/ALZ reference implementation - this is automatically created in the file 'infra-as-code\bicep\modules\policy\lib\policy_definitions\_policyDefinitionsBicepInput.txt' via a GitHub action, that runs on a daily schedule, and is then manually copied into this variable.
 var varCustomPolicyDefinitionsArray = [
@@ -1902,7 +1905,13 @@ resource resPolicySetDefinitions 'Microsoft.Authorization/policySetDefinitions@2
 }]
 
 // Optional Deployment for Customer Usage Attribution
-module modCustomerUsageAttribution '../../../CRML/customerUsageAttribution/cuaIdManagementGroup.bicep' = if (!parTelemetryOptOut) {
+//module modCustomerUsageAttribution '../../../CRML/customerUsageAttribution/cuaIdManagementGroup.bicep' = if (!parTelemetryOptOut) {
+//  #disable-next-line no-loc-expr-outside-params //Only to ensure telemetry data is stored in same location as deployment. See https://github.com/Azure/ALZ-Bicep/wiki/FAQ#why-are-some-linter-rules-disabled-via-the-disable-next-line-bicep-function for more information
+//  name: 'pid-${varCuaid}-${uniqueString(deployment().location)}'
+//  params: {}
+//}
+
+module modCustomerUsageAttribution '../../../CRML/customerUsageAttribution/cuaIdSubscription.bicep' = if (!parTelemetryOptOut) {
   #disable-next-line no-loc-expr-outside-params //Only to ensure telemetry data is stored in same location as deployment. See https://github.com/Azure/ALZ-Bicep/wiki/FAQ#why-are-some-linter-rules-disabled-via-the-disable-next-line-bicep-function for more information
   name: 'pid-${varCuaid}-${uniqueString(deployment().location)}'
   params: {}
