@@ -9,7 +9,7 @@ param (
   [String]$TemplateFile = "upstream-releases\$($env:UPSTREAM_RELEASE_VERSION)\infra-as-code\bicep\orchestration\connectivityDeployment\connectivityDeployment.bicep",
 
   [Parameter()]
-  [String]$TemplateParameterFile = 'config\custom-parameters\resourceGroupConnectivity.parameters.all.json'
+  [String]$TemplateParameterFile = 'config\custom-parameters\connectivityDeployment.parameters.all.json'
 )
 
 $inputObject = @{
