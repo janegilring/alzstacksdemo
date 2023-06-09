@@ -13,7 +13,7 @@ param (
   [String]$TemplateFile = "upstream-releases\$($env:UPSTREAM_RELEASE_VERSION)\infra-as-code\bicep\orchestration\LoggingAndSentinelDeployment\LoggingAndSentinelDeployment.bicep",
 
   [Parameter()]
-  [String]$TemplateParameterFile = 'config\custom-parameters\loggingAndSentinelDeployment.parameters.all'
+  [String]$TemplateParameterFile = 'config\custom-parameters\loggingAndSentinelDeployment.parameters.all.json'
 )
 
 $inputObject = @{
