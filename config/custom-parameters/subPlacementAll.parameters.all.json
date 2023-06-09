@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "parTopLevelManagementGroupPrefix": {
-      "value": "alz"
+      "value": "psc"
     },
     "parTopLevelManagementGroupSuffix": {
       "value": ""
@@ -15,25 +15,25 @@
       "value": []
     },
     "parPlatformManagementMgSubs": {
-      "value": [
-        "1d6ec85d-73c1-44ac-afa4-d2586c91abb6"
-      ]
+      "value": []
     },
     "parPlatformConnectivityMgSubs": {
       "value": [
-        "2d88df96-b1fc-422d-a47d-eb9018284dc1"
+        "a3ad735d-1e81-41fc-b57d-134f2c2bd403"
       ]
     },
     "parPlatformIdentityMgSubs": {
       "value": [
-        "88062061-319b-4205-a108-6c257ca891ec"
+        "951196a7-69c5-45fa-b853-9c96817bd007"
       ]
     },
     "parLandingZonesMgSubs": {
       "value": []
     },
     "parLandingZonesCorpMgSubs": {
-      "value": []
+      "value": [
+        "e4b60627-c354-4db6-8e7b-aab3e6204415"
+    ]
     },
     "parLandingZonesOnlineMgSubs": {
       "value": []
@@ -54,7 +54,9 @@
       "value": []
     },
     "parSandboxMgSubs": {
-      "value": []
+      "value": [
+        "86fde88b-9e2a-4115-b70c-62c9b83ccdc7"
+      ]
     },
     "parTelemetryOptOut": {
       "value": false
