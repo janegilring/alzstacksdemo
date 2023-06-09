@@ -37,6 +37,22 @@ jobs:
             (Get-Content -Path $env:ENV_FILE -Encoding UTF8) | ForEach-Object {$_ -replace '"',''} | Out-File -FilePath $env:ENV_FILE -Encoding UTF8
           azPSVersion: "latest"
 
+       - name: "Install Az.Resources preview version"
+          uses: azure/powershell@v1
+          with:
+            inlineScript: |
+              Get-ChildItem Env:/PSModulePath | Select-Object -ExpandProperty Value) -split ":"
+              $modulePath = Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path)
+              $moduleFilePath = Join-Path (Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path)) -ChildPath StacksPS_9.1.10.zip
+              Write-Host "Downloading module to path $modulePath"
+              Invoke-WebRequest -Method Get -Uri "https://janegilring.blob.core.windows.net/demos/StacksPS_9.1.10.zip?sp=r&st=2023-06-09T19:17:04Z&se=2023-10-01T03:17:04Z&spr=https&sv=2022-11-02&sr=b&sig=da5nXndb4LYFsD5AVbPETIbsYw33RdBFpkw8bAFsTc4%3D" -OutFile $moduleFilePath
+              if (Test-Path -Path $modulePath) {
+                Expand-Archive -Path $moduleFilePath -DestinationPath $modulePath -ErrorAction SilentlyContinue -Force
+                Copy-Item -Path "$modulePath/StacksPS_9.1.10/StacksPS_9.1.10/bin/modules/Az.Resources" -Destination $modulePath -Recurse
+              }
+              Get-Module -Name Az.Resources -ListAvailable
+            azPSVersion: "latest"
+
       - name: Import Environment Variables from File
         run: cat ${{ env.ENV_FILE }} >> $GITHUB_ENV
 
@@ -48,32 +64,25 @@ jobs:
           subscription-id: ${{ env.MANAGEMENT_SUBSCRIPTION_ID }}
           enable-AzPSSession: true
 
-      - name: "Management Groups Deployment"
+      - name: "Management Groups Deployment Stack"
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            .\pipeline-scripts\Deploy-ALZManagementGroups.ps1
+            .\pipeline-scripts\01-Deploy-ALZ-ManagementGroupsStack.ps1
           azPSVersion: "latest"
 
-      - name: "Logging and Sentinel Resource Group Deployment"
+      - name: "Logging and Sentinel Deployment Stack"
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            .\pipeline-scripts\Deploy-ALZLoggingAndSentinelResourceGroup.ps1
+            .\pipeline-scripts\02-Deploy-ALZLoggingAndSentinelStack.ps1
           azPSVersion: "latest"
 
-      - name: "Logging and Sentinel Deployment"
+      - name: "Custom Policy Definitions Deployment Stack"
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            .\pipeline-scripts\Deploy-ALZLoggingAndSentinel.ps1
-          azPSVersion: "latest"
-
-      - name: "Custom Policy Definitions Deployment"
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
-            .\pipeline-scripts\Deploy-ALZCustomPolicyDefinitions.ps1
+            .\pipeline-scripts\03-Deploy-ALZCustomPolicyDefinitions.ps1
           azPSVersion: "latest"
 
       - name: "Custom Role Definitions Deployment"

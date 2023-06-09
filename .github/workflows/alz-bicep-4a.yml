@@ -48,5 +48,5 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            .\pipeline-scripts\Deploy-ALZ-ConnectivityStack-HubAndSpoke.ps1
+            .\pipeline-scripts\04-Deploy-ALZ-ConnectivityStack-HubAndSpoke.ps1
           azPSVersion: "latest"
