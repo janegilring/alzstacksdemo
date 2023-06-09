@@ -1,5 +1,8 @@
 param (
   [Parameter()]
+  [String]$ManagementSubscriptionId = "$($env:MANAGEMENT_SUBSCRIPTION_ID)",
+
+  [Parameter()]
   [String]$Location = "$($env:LOCATION)",
 
   [Parameter()]

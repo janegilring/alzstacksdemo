@@ -6,7 +6,7 @@ param (
   [String]$TopLevelMGPrefix = "$($env:TOP_LEVEL_MG_PREFIX)",
 
   [Parameter()]
-  [String]$TemplateFile = "upstream-releases\$($env:UPSTREAM_RELEASE_VERSION)\infra-as-code\bicep\modules\policy\definitions\customPolicyDefinitions.bicep",
+  [String]$TemplateFile = "upstream-releases\$($env:UPSTREAM_RELEASE_VERSION)\infra-as-code\bicep\orchestration\policyDeployment\policyDeployment.bicep",
 
   [Parameter()]
   [String]$TemplateParameterFile = "config\custom-parameters\customPolicyDefinitions.parameters.all.json"
@@ -17,7 +17,7 @@ $inputObject = @{
   Location                 = $Location
   TemplateFile             = $TemplateFile
   TemplateParameterFile    = $TemplateParameterFile
-  DeploymentSubscriptionId = $ManagementSubscriptionId
+  DeploymentSubscriptionId = $env:MANAGEMENT_SUBSCRIPTION_ID
   DeleteAll                = $true
   Tag                      = @{Environment = 'Demo' }
   Verbose                  = $true

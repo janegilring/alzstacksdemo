@@ -6,21 +6,34 @@ param (
   [String]$LoggingResourceGroup = "$($env:LOGGING_RESOURCE_GROUP)",
 
   [Parameter()]
-  [String]$TemplateFile = "upstream-releases\$($env:UPSTREAM_RELEASE_VERSION)\infra-as-code\bicep\modules\logging\logging.bicep",
+  [String]$TemplateFile = "upstream-releases\$($env:UPSTREAM_RELEASE_VERSION)\infra-as-code\bicep\orchestration\LoggingAndSentinelDeployment\LoggingAndSentinelDeployment.bicep",
 
   [Parameter()]
-  [String]$TemplateParameterFile = "config\custom-parameters\logging.parameters.all.json"
+  [String]$TemplateParameterFile = "config\custom-parameters\loggingAndSentinelDeployment.parameters.all"
 )
 
-# Parameters necessary for deployment
 $inputObject = @{
-  DeploymentName        = 'alz-LoggingDeploy-{0}' -f ( -join (Get-Date -Format 'yyyyMMddTHHMMssffffZ')[0..63])
-  ResourceGroupName     = $LoggingResourceGroup
-  TemplateFile          = $TemplateFile
-  TemplateParameterFile = $TemplateParameterFile
-  Verbose               = $true
+  Name                     = 'ALZ-Logging'
+  ManagementGroupId        = 'psc'
+  Location                 = $Location
+  TemplateFile             = $TemplateFile
+  TemplateParameterFile    = $TemplateParameterFile
+  DeploymentSubscriptionId = $ManagementSubscriptionId
+  DeleteAll                = $true
+  Tag                      = @{Environment = 'Demo' }
+  Verbose                  = $true
+  DenySettingsMode         = 'DenyDelete'
+  Force                    = $true
 }
 
-Select-AzSubscription -SubscriptionId $ManagementSubscriptionId
+$StackExists = Get-AzManagementGroupDeploymentStack -Name $inputObject.Name -ManagementGroupId $inputObject.ManagementGroupId -ErrorAction SilentlyContinue
 
-New-AzResourceGroupDeployment @inputObject
+if ($StackExists) {
+
+  Set-AzManagementGroupDeploymentStack @inputObject
+
+} else {
+
+  New-AzManagementGroupDeploymentStack @inputObject
+
+}
