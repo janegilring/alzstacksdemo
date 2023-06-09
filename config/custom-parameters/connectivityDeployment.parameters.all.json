@@ -6,7 +6,7 @@
       "value": "northeurope"
     },
     "parResourceGroupName": {
-      "value": "rg-alz-connectivity"
+      "value": "rg-psc-connectivity"
     },
     "parTags": {
       "value": {
@@ -14,10 +14,10 @@
       }
     },
     "parCompanyPrefix": {
-      "value": "alz"
+      "value": "psc"
     },
     "parHubNetworkName": {
-      "value": "alz-hub-northeurope"
+      "value": "psc-hub-northeurope"
     },
     "parHubNetworkAddressPrefix": {
       "value": "10.20.0.0/16"
@@ -66,7 +66,7 @@
       "value": false
     },
     "parAzBastionName": {
-      "value": "alz-bastion"
+      "value": "psc-bastion"
     },
     "parAzBastionSku": {
       "value": "Standard"
@@ -78,16 +78,16 @@
       "value": false
     },
     "parDdosPlanName": {
-      "value": "alz-ddos-plan"
+      "value": "psc-ddos-plan"
     },
     "parAzFirewallEnabled": {
       "value": false
     },
     "parAzFirewallName": {
-      "value": "alz-azfw-northeurope"
+      "value": "psc-azfw-northeurope"
     },
     "parAzFirewallPoliciesName": {
-      "value": "alz-azfwpolicy-northeurope"
+      "value": "psc-azfwpolicy-northeurope"
     },
     "parAzFirewallTier": {
       "value": "Standard"
@@ -105,13 +105,13 @@
       "value": true
     },
     "parHubRouteTableName": {
-      "value": "alz-hub-routetable"
+      "value": "psc-hub-routetable"
     },
     "parDisableBgpRoutePropagation": {
       "value": false
     },
     "parPrivateDnsZonesEnabled": {
-      "value": false
+      "value": true
     },
     "parPrivateDnsZones": {
       "value": [
