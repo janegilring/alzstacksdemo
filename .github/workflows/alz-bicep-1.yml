@@ -37,10 +37,10 @@ jobs:
             (Get-Content -Path $env:ENV_FILE -Encoding UTF8) | ForEach-Object {$_ -replace '"',''} | Out-File -FilePath $env:ENV_FILE -Encoding UTF8
           azPSVersion: "latest"
 
-       - name: "Install Az.Resources preview version"
-          uses: azure/powershell@v1
-          with:
-            inlineScript: |
+      - name: "Install Az.Resources preview version"
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
               Get-ChildItem Env:/PSModulePath | Select-Object -ExpandProperty Value) -split ":"
               $modulePath = Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path)
               $moduleFilePath = Join-Path (Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path)) -ChildPath StacksPS_9.1.10.zip
@@ -51,7 +51,7 @@ jobs:
                 Copy-Item -Path "$modulePath/StacksPS_9.1.10/StacksPS_9.1.10/bin/modules/Az.Resources" -Destination $modulePath -Recurse
               }
               Get-Module -Name Az.Resources -ListAvailable
-            azPSVersion: "latest"
+          azPSVersion: "latest"
 
       - name: Import Environment Variables from File
         run: cat ${{ env.ENV_FILE }} >> $GITHUB_ENV
