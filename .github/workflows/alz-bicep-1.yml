@@ -43,12 +43,12 @@ jobs:
           inlineScript: |
               (Get-ChildItem Env:/PSModulePath | Select-Object -ExpandProperty Value) -split ":"
               $modulePath = Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path))
-              $moduleFilePath = Join-Path (Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path)) -ChildPath StacksPS_9.1.10.zip
+              $moduleFilePath = Join-Path $modulePath -ChildPath StacksPS_9.1.10.zip
               Write-Host "Downloading module to path $modulePath"
               Invoke-WebRequest -Method Get -Uri "https://janegilring.blob.core.windows.net/demos/StacksPS_9.1.10.zip?sp=r&st=2023-06-09T19:17:04Z&se=2023-10-01T03:17:04Z&spr=https&sv=2022-11-02&sr=b&sig=da5nXndb4LYFsD5AVbPETIbsYw33RdBFpkw8bAFsTc4%3D" -OutFile $moduleFilePath
               if (Test-Path -Path $modulePath) {
                 Expand-Archive -Path $moduleFilePath -DestinationPath $modulePath -ErrorAction SilentlyContinue -Force
-                Copy-Item -Path "$modulePath/StacksPS_9.1.10/StacksPS_9.1.10/bin/modules/Az.Resources" -Destination $modulePath -Recurse
+                Copy-Item -Path "$modulePath/StacksPS_9.1.10/bin/modules/Az.Resources" -Destination "$modulePath/Az.Resources/9.10" -Recurse
               }
               Get-Module -Name Az.Resources -ListAvailable
           azPSVersion: "latest"
