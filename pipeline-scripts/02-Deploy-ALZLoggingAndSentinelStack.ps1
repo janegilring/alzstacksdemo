@@ -14,7 +14,7 @@ param (
 
 $inputObject = @{
   Name                     = 'ALZ-Logging'
-  ManagementGroupId        = 'psc'
+  ManagementGroupId        = 'fd91810c-57b4-43e3-b513-c2a81e8d6a27' #'Tenant Root Group'
   Location                 = $Location
   TemplateFile             = $TemplateFile
   TemplateParameterFile    = $TemplateParameterFile
