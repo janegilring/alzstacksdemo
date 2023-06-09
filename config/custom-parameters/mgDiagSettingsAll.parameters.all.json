@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "parTopLevelManagementGroupPrefix": {
-      "value": "alz"
+      "value": "psc"
     },
     "parTopLevelManagementGroupSuffix": {
       "value": ""
@@ -18,7 +18,7 @@
       "value": false
     },
     "parLogAnalyticsWorkspaceResourceId": {
-      "value": "/subscriptions/1d6ec85d-73c1-44ac-afa4-d2586c91abb6/resourcegroups/rg-alz-logging/providers/microsoft.operationalinsights/workspaces/alz-log-analytics"
+      "value": "/subscriptions/72949fb8-297a-4da5-bfed-aed671c680d0/resourcegroups/rg-psc-logging/providers/microsoft.operationalinsights/workspaces/psc-log-analytics"
     },
     "parLandingZoneMgChildren": {
       "value": []
