@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parManagementSubscriptionId": {
+      "value": "72949fb8-297a-4da5-bfed-aed671c680d0"
+    },
+    "parTelemetryOptOut": {
+      "value": true
+    },
+    "parLocation": {
+      "value": "northeurope"
+    },
+    "parLoggingAndSentinelResourceGroupResourceGroupName": {
+      "value": "rg-psc-logging"
+    },
+    "parTags": {
+      "value": {
+        "Environment": "demo"
+      }
+    },
+    "parLogAnalyticsWorkspaceName": {
+      "value": "psc-log-analytics"
+    },
+    "parLogAnalyticsWorkspaceLocation": {
+      "value": "northeurope"
+    },
+    "parLogAnalyticsWorkspaceSkuName": {
+      "value": "PerGB2018"
+    },
+    "parLogAnalyticsWorkspaceLogRetentionInDays": {
+      "value": 365
+    },
+    "parLogAnalyticsWorkspaceSolutions": {
+      "value": [
+        "AgentHealthAssessment",
+        "AntiMalware",
+        "ChangeTracking",
+        "Security",
+        "SecurityInsights",
+        "SQLAdvancedThreatProtection",
+        "SQLVulnerabilityAssessment",
+        "SQLAssessment",
+        "Updates",
+        "VMInsights"
+      ]
+    },
+    "parAutomationAccountName": {
+      "value": "psc-automation-account"
+    },
+    "parAutomationAccountLocation": {
+      "value": "northeurope"
+    },
+    "parAutomationAccountUseManagedIdentity": {
+      "value": true
+    }
+  }
+}
