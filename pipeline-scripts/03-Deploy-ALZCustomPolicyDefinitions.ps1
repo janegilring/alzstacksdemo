@@ -3,6 +3,9 @@ param (
   [String]$Location = "$($env:LOCATION)",
 
   [Parameter()]
+  [String]$ManagementSubscriptionId = "$($env:MANAGEMENT_SUBSCRIPTION_ID)",
+
+  [Parameter()]
   [String]$TopLevelMGPrefix = "$($env:TOP_LEVEL_MG_PREFIX)",
 
   [Parameter()]
@@ -17,7 +20,7 @@ $inputObject = @{
   Location                 = $Location
   TemplateFile             = $TemplateFile
   TemplateParameterFile    = $TemplateParameterFile
-  DeploymentSubscriptionId = $env:MANAGEMENT_SUBSCRIPTION_ID
+  DeploymentSubscriptionId = $ManagementSubscriptionId
   DeleteAll                = $true
   Tag                      = @{Environment = 'Demo' }
   Verbose                  = $true
