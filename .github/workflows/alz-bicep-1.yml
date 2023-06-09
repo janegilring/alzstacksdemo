@@ -41,7 +41,7 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
-              Get-ChildItem Env:/PSModulePath | Select-Object -ExpandProperty Value) -split ":"
+              (Get-ChildItem Env:/PSModulePath | Select-Object -ExpandProperty Value) -split ":"
               $modulePath = Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path)
               $moduleFilePath = Join-Path (Split-Path (Split-Path (Split-Path (Get-Module -Name Az.Resources -ListAvailable)[0].Path)) -ChildPath StacksPS_9.1.10.zip
               Write-Host "Downloading module to path $modulePath"
