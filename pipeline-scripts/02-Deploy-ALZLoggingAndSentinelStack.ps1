@@ -26,7 +26,7 @@ $inputObject = @{
   DeleteAll                = $true
   Tag                      = @{Environment = 'Demo' }
   Verbose                  = $true
-  DenySettingsMode         = 'DenyDelete'
+  DenySettingsMode         = 'DenyWriteAndDelete'
   Force                    = $true
 }
 
