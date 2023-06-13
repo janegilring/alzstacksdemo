@@ -23,6 +23,7 @@ $inputObject = @{
   TemplateFile                   = $TemplateFile
   TemplateParameterFile          = $TemplateParameterFile
   DeploymentSubscriptionId       = $ManagementSubscriptionId
+  DenySettingsApplyToChildScopes = $true
   DeleteAll                      = $true
   Tag                            = @{Environment = 'Demo' }
   Verbose                        = $true
